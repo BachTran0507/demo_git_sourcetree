@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tactical Intelligence Simulator - Blue Lock</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e2e;
+            color: #fff;
+            text-align: center;
+        }
+        header {
+            background: linear-gradient(90deg, #007BFF, #00C6FF);
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .character-image {
+            width: 200px;
+            height: auto;
+            margin-top: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            background: linear-gradient(90deg, #007BFF, #00C6FF);
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s, background 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #0056b3, #0084d6);
+            transform: scale(1.1);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #007BFF;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tactical Intelligence Simulator</h1>
+        <p>Trải nghiệm chiến thuật bóng đá như trong Blue Lock!</p>
+    </header>
+    <main>
+        <section id="simulator">
+            <h2>Tình huống bóng đá</h2>
+            <p>Bạn đang ở giữa sân, đối thủ đang áp sát. Bạn sẽ làm gì?</p>
+            <img src="https://static.wikia.nocookie.net/bluelock/images/4/4b/Tabito_Karasu.png/revision/latest/scale-to-width/360?cb=20200913141409" alt="Nhân vật" class="character-image">
+            <button onclick="chooseAction('pass')">Chuyền bóng</button>
+            <button onclick="chooseAction('dribble')">Rê bóng</button>
+            <button onclick="chooseAction('shoot')">Sút bóng</button>
+            <div id="result" style="display: none;">
+                <p id="result-text"></p>
+                <button onclick="resetScenario()">Thử lại</button>
+            </div>
+        </section>
+        <section id="analysis">
+            <h2>Phân tích chiến thuật</h2>
+            <p id="analysis-text"></p>
+        </section>
+    </main>
+    <footer>
+        <button onclick="goHome()">Trang chủ</button>
+        <button onclick="goBack()">Trang trước</button>
+    </footer>
+    <script>
+        function chooseAction(action) {
+            const result = document.getElementById('result');
+            const resultText = document.getElementById('result-text');
+            const analysisText = document.getElementById('analysis-text');
+            document.getElementById('simulator').style.display = 'none';
+            result.style.display = 'block';
+            if (action === 'pass') {
+                resultText.textContent = "Bạn đã chọn chuyền bóng. Đồng đội của bạn đã nhận bóng và tạo ra cơ hội ghi bàn!";
+                analysisText.textContent = "Phân tích: Chuyền bóng là lựa chọn thông minh khi có đồng đội ở vị trí tốt. Isagi thường sử dụng chiến thuật này để phá vỡ hàng phòng ngự.";
+            } else if (action === 'dribble') {
+                resultText.textContent = "Bạn đã chọn rê bóng. Bạn đã vượt qua hậu vệ nhưng bị cướp bóng ở phút cuối!";
+                analysisText.textContent = "Phân tích: Rê bóng có thể rủi ro nếu không có kỹ năng tốt. Bachira thường thành công nhờ kỹ thuật cá nhân xuất sắc.";
+            } else if (action === 'shoot') {
+                resultText.textContent = "Bạn đã chọn sút bóng. Bóng bay chệch khung thành!";
+                analysisText.textContent = "Phân tích: Sút bóng từ xa đòi hỏi độ chính xác cao. Rin thường tính toán kỹ lưỡng trước khi sút.";
+            }
+        }
+        function resetScenario() {
+            document.getElementById('simulator').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+        }
+        function goHome() {
+            window.location.href = "index.html";
+        }
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>
